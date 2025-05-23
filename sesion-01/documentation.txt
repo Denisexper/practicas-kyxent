@@ -1,0 +1,8 @@
+1: una funcion recursiva es una que se invoca dentro de si misma.
+2: para hacerla recursiva simplemente la llamamos dentro de ella.
+Comando para ordenar codigo: shift + alt +f 
+Comando para comentar: ctrl + k + c
+Comando para descomentar: ctrl + k + u
+
+PRINCIPIO BRY: Lo que trata es evitar la duplicacion de codigo o que se repita varias veces el mismo codido.
+
