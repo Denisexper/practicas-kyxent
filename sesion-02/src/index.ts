@@ -1,18 +1,21 @@
 import express from "express"
 import { connect } from "mongoose";
 import "dotenv/config"
-import env from "env-var"
+import { Enviroments } from "./plugins/enviroment.service";
 import { initWarriorRoutes } from "./routes/warriors.routes";
 
 
 
-const Enviroments = {
-    MONGO : env.get("MONGODB_URI").required().asUrlString()
-}
-
 const app = express();
 app.use(express.json());
-app.use("/api", initWarriorRoutes());
+
+//iniciamos las rutas
+const initService = async () => {
+
+    app.use("/api", await initWarriorRoutes());
+}
+
+initService();
 
 app.listen(3000, () => {
     console.log("server is running")

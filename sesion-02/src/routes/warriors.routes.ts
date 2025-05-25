@@ -1,21 +1,19 @@
 import { Router, Request, Response } from "express"
-import { createWarriorService } from "../services/createWarriror.service"
-import { readWarriors } from "../services/readWarrior.service"
-import { deleteWarriors } from "../services/deleteWarrior.service"
-import { updateWarrior } from "../services/updateWarrior.service"
 
+import { warriorControllerService } from "../services/warrior.controller.service"
 
-
-export const initWarriorRoutes = () => {
+export const initWarriorRoutes = async () => {
 
     try {
         
         const enrutador = Router()
 
-        enrutador.post("/warriors", (req: Request, res: Response) => createWarriorService(req, res)),
-        enrutador.get("/read", (req: Request, res: Response) => readWarriors(req, res)),
-        enrutador.delete("/delete/:id", (req: Request, res: Response) => deleteWarriors(req, res)),
-        enrutador.put("/update/:id", (req: Request, res: Response) => updateWarrior(req, res))
+        const controller = await warriorControllerService()
+
+        enrutador.post("/create", (req: Request, res: Response) => controller.createController(req, res)),
+        enrutador.get("/warriors", (req: Request, res: Response) => controller.getAllController(req, res)),
+        enrutador.put("/update/:id", (req: Request, res: Response) => controller.updateController(req, res)),
+        enrutador.delete("/delete/:id", (req: Request, res: Response) => controller.deleteController(req, res))
 
         return enrutador
 
